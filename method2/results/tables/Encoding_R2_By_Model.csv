@@ -1,0 +1,5 @@
+Model,Magnification_R2,Best_Morphology_R2,Mean_Morphology_R2
+resnet50,0.6143,0.5652,0.11930000000000002
+efficientnet_b0,0.7792,0.5288,0.12811666666666666
+mobilenet_v3_large,0.6824,0.6314,0.12098333333333332
+convnext_tiny,0.7037,0.7087,0.1546833333333333

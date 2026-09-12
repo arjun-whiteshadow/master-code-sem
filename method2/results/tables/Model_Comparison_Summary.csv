@@ -1,0 +1,5 @@
+Model,Embedding_Dimension,PCs_Retained,Selected_k,Cluster_Sizes,Silhouette,CrossAlgorithm_ARI,Degenerate
+resnet50,2048,19,2,11/26,0.167,0.1483,False
+efficientnet_b0,1280,16,6,2/15/4/3/2/11,0.2474,0.5072,False
+mobilenet_v3_large,960,15,6,13/4/2/9/5/4,0.2501,0.5814,False
+convnext_tiny,768,12,5,14/9/5/4/5,0.3069,0.9321,False

@@ -1,0 +1,5 @@
+Model,Status,Embedding_Dimension,Images,Weights,Note
+resnet50,ok,2048,37,ResNet50_Weights.IMAGENET1K_V2,
+efficientnet_b0,ok,1280,37,EfficientNet_B0_Weights.IMAGENET1K_V1,
+mobilenet_v3_large,ok,960,37,MobileNet_V3_Large_Weights.IMAGENET1K_V2,
+convnext_tiny,ok,768,37,ConvNeXt_Tiny_Weights.IMAGENET1K_V1,
