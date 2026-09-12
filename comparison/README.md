@@ -12,6 +12,9 @@ pip install -r requirements.txt
 python run_comparison.py
 ```
 
+`requirements-lock.txt` lists the exact package versions that produced the
+committed tables.
+
 Both method pipelines must have been run first (or their committed
 `results/tables/` must be present). Runs in seconds.
 

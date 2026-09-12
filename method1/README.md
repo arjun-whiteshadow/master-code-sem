@@ -13,6 +13,9 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
+`requirements-lock.txt` lists the exact package versions that produced the
+committed tables; use it instead of `requirements.txt` to reproduce them.
+
 Place the feature table at `data/nanowire_features.xlsx` (one row per sample,
 a `Sample` column and the six descriptor columns). The table is available from
 the corresponding author on request.

@@ -15,6 +15,9 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
+`requirements-lock.txt` lists the exact package versions that produced the
+committed tables; use it instead of `requirements.txt` to reproduce them.
+
 Place the SEM images in `data/images/` (one image per sample; the filename
 stem is the sample ID and must match the `Sample` column of the Method 1
 table). Pretrained weights (about 250 MB in total) are downloaded by
