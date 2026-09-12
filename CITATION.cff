@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite it as below."
+type: software
+title: "AI-Assisted Identification of Nanowire Growth Regimes Using SEM Image Analysis and Unsupervised Learning"
+authors:
+  - family-names: Poudel
+    given-names: Arjun Sharma
+    affiliation: "Joint School of Nanoscience and Nanoengineering, North Carolina A&T State University"
+  - family-names: Iyer
+    given-names: Shanthi
+    affiliation: "Joint School of Nanoscience and Nanoengineering, North Carolina A&T State University"
+license: MIT
+version: 1.0.0
+date-released: "2026-09-12"
+keywords:
+  - nanowires
+  - GaAsSb
+  - scanning electron microscopy
+  - unsupervised clustering
+  - convolutional neural networks
