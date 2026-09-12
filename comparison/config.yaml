@@ -1,0 +1,27 @@
+# Comparison of Method 1 and Method 2 partitions.
+# Settings are described in ../PROTOCOL.md.
+
+input:
+  method1_results: ../method1/results
+  method2_results: ../method2/results
+  primary_model: resnet50
+
+# Descriptive names for the Method 1 clusters, taken from their descriptor
+# profiles. Method 2 clusters are not named.
+method1_cluster_names:
+  1: Highly nonuniform morphology
+  2: Sparse, low-coverage morphology
+  3: Larger-diameter, relatively uniform morphology
+  4: Dense, small-diameter morphology
+
+# Percent thresholds on min(capture, purity) for the cluster-level table.
+agreement_levels:
+  strong: 70
+  moderate: 40
+
+# Reference line on the agreement figure.
+weak_ari: 0.20
+
+output:
+  results_folder: results
+  figure_dpi: 300
