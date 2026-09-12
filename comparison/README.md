@@ -18,6 +18,14 @@ committed tables.
 Both method pipelines must have been run first (or their committed
 `results/tables/` must be present). Runs in seconds.
 
+## Tests
+
+```bash
+pytest
+```
+
+`tests/test_agreement.py` checks the agreement indices, cluster-level matching and Hungarian layout on synthetic data.
+
 ## What is computed
 
 - ARI, NMI, AMI, homogeneity, completeness and V-measure between the Method 1
@@ -42,6 +50,7 @@ The descriptive names of the Method 1 clusters are set in `config.yaml`.
 | `src/agreement.py` | Agreement indices, cluster-level matching, Hungarian layout |
 | `src/plots.py` | Figures |
 | `src/report.py` | Text summary and run record |
+| `tests/test_agreement.py` | Unit tests |
 
 ## Outputs
 

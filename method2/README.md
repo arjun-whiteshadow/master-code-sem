@@ -35,6 +35,14 @@ python run_method2.py
 
 A few minutes on a CPU or Apple-silicon laptop; a GPU is used if available.
 
+## Tests
+
+```bash
+pytest
+```
+
+`tests/test_clustering.py` checks the clustering rules, the zoom-control and encoding calculations, and image handling on synthetic data.
+
 ## Pipeline
 
 1. Index the images; record size, mode, checksum and SEM metadata
@@ -61,6 +69,7 @@ A few minutes on a CPU or Apple-silicon laptop; a GPU is used if available.
 | `src/confounds.py` | Zoom control and encoding regression |
 | `src/plots.py` | Figures |
 | `src/report.py` | Text summary and run record |
+| `tests/test_clustering.py` | Unit tests |
 
 ## Outputs
 

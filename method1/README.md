@@ -33,6 +33,14 @@ To add per-cluster contact sheets and the magnification cross-check, set
 `input.image_folder` in `config.yaml` to a folder of the SEM TIFFs. Images
 are read only.
 
+## Tests
+
+```bash
+pytest
+```
+
+`tests/test_clustering.py` checks the k-selection rule, PCA retention, stability and outlier checks on synthetic data.
+
 ## Pipeline
 
 1. Load the feature table, check completeness, record acquisition variables.
@@ -54,6 +62,7 @@ are read only.
 | `src/clustering.py` | Standardisation, PCA, clustering, k selection, stability tests |
 | `src/plots.py` | Figures |
 | `src/report.py` | Text summary and run record |
+| `tests/test_clustering.py` | Unit tests |
 
 ## Outputs
 
