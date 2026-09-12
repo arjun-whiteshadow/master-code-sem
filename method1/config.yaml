@@ -1,0 +1,55 @@
+# Method 1: clustering of morphology descriptors.
+# Settings are described in ../PROTOCOL.md.
+
+random_seed: 42
+
+input:
+  feature_file: data/nanowire_features.xlsx
+  sample_id_column: Sample
+  # Optional folder of SEM images, used only for contact sheets and the
+  # magnification cross-check. Leave empty to skip both.
+  image_folder: ""
+
+features:
+  use:
+    - Density_NW_um2
+    - Mean_Diameter_um
+    - CV_percent
+    - Merged_percent
+    - Foreground_Coverage_percent
+    - Angle_STD_deg
+  min_valid_fraction: 0.80
+  # Carried through to the output tables; never used for clustering.
+  acquisition_columns:
+    - Count
+    - Image_Area_um2
+
+pca:
+  variance_threshold: 0.80
+  min_components: 2
+
+clustering:
+  k_values: [2, 3, 4, 5, 6]
+  kmeans_n_init: 50
+  run_dbscan: true
+  dbscan_eps_values: [0.5, 0.75, 1.0, 1.25, 1.5, 2.0, 2.5, 3.0]
+  dbscan_min_samples: [2, 3, 4]
+
+selection:
+  min_cluster_size: 2
+
+stability:
+  n_subsample: 200
+  subsample_fraction: 0.80
+  subsample_n_init: 10
+  outlier_z_threshold: 3.0
+
+# Used only to label a result as weak in the report.
+thresholds:
+  weak_silhouette: 0.25
+  weak_cross_algorithm_ari: 0.30
+  weak_subsample_ari: 0.50
+
+output:
+  results_folder: results
+  figure_dpi: 300
