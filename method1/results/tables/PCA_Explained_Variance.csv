@@ -1,0 +1,7 @@
+Component,Explained_Variance_Percent,Cumulative_Variance_Percent,Retained_For_Clustering
+PC1,31.5475,31.5475,True
+PC2,25.3271,56.8746,True
+PC3,22.2913,79.1659,True
+PC4,10.1009,89.2668,True
+PC5,8.3069,97.5737,False
+PC6,2.4263,100.0,False
