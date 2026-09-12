@@ -1,0 +1,87 @@
+# Method 2: clustering of pretrained-CNN image embeddings.
+# Settings are described in ../PROTOCOL.md.
+
+random_seed: 42
+
+input:
+  image_folder: data/images
+  extensions: [.tif, .tiff, .png, .jpg, .jpeg, .bmp]
+  # Method 1 descriptor table. Read only by the encoding regression, which
+  # runs after clustering is complete. Leave empty to skip that test.
+  descriptor_file: ../method1/data/nanowire_features.xlsx
+  descriptor_id_column: Sample
+  descriptor_columns:
+    - Density_NW_um2
+    - Mean_Diameter_um
+    - CV_percent
+    - Merged_percent
+    - Foreground_Coverage_percent
+    - Angle_STD_deg
+
+models:
+  # The primary model's clustering is reported in detail; the others are
+  # run with identical settings as a robustness check.
+  primary: resnet50
+  candidates: [resnet50, efficientnet_b0, mobilenet_v3_large, convnext_tiny]
+
+preprocessing:
+  batch_size: 8
+  # Fraction of image height removed from the bottom before the network's
+  # own transform. 0 uses the full frame.
+  crop_bottom_fraction: 0.0
+
+embedding:
+  l2_normalize: true
+  standard_scale: true
+
+pca:
+  variance_threshold: 0.80
+  min_components: 2
+
+clustering:
+  k_values: [2, 3, 4, 5, 6]
+  kmeans_n_init: 50
+  run_dbscan: true
+  dbscan_eps_values: [2.0, 4.0, 6.0, 8.0, 10.0, 12.0, 15.0, 20.0]
+  dbscan_min_samples: [2, 3, 4]
+
+selection:
+  min_cluster_size: 2
+
+stability:
+  n_subsample: 200
+  subsample_fraction: 0.80
+  subsample_n_init: 10
+  # Samples further than mean + this many SD from their cluster centre are
+  # flagged (and retained).
+  outlier_sd_threshold: 2.0
+  run_crop_sensitivity: true
+  crop_sensitivity_fraction: 0.10
+
+confounds:
+  run_zoom_control: true
+  zoom_factors: [1.0, 1.4, 2.0, 2.8, 4.0]
+  # Images within this magnification band (kX) are used for the zoom test.
+  # All readable images are used if fewer than zoom_min_images fall in it.
+  zoom_magnification_range_kx: [5.0, 15.0]
+  zoom_min_images: 5
+  run_encoding_regression: true
+  encoding_pca_components: 20
+
+visualization:
+  run_umap: true
+  umap_n_neighbors: 10
+  umap_min_dist: 0.1
+  umap_metric: euclidean
+
+# Used only to label a result as weak in the report.
+thresholds:
+  weak_silhouette: 0.25
+  weak_cross_algorithm_ari: 0.30
+  weak_subsample_ari: 0.50
+
+output:
+  results_folder: results
+  figure_dpi: 300
+  annotate_up_to: 60
+  make_contact_sheets: true
