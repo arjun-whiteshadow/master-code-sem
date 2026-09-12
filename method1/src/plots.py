@@ -10,6 +10,9 @@ from scipy.cluster.hierarchy import dendrogram
 
 PALETTE = ["#065A82", "#B03A2E", "#1E8449", "#8E44AD", "#D68910", "#17A2B8"]
 
+# Scatter plots label each point with its sample ID up to this many samples.
+ANNOTATE_UP_TO = 60
+
 # Axis labels for the descriptor columns.
 LABELS = {
     "Density_NW_um2": "Density (NW/µm²)",
@@ -31,7 +34,16 @@ def _save(fig, path, dpi):
     plt.close(fig)
 
 
+def _colour(i):
+    """Colour for cluster index ``i``; falls back to tab20 beyond the palette."""
+    if i < len(PALETTE):
+        return PALETTE[i]
+    return plt.get_cmap("tab20")(i % 20)
+
+
 def _annotate(ax, xs, ys, labels, fontsize=6):
+    if len(labels) > ANNOTATE_UP_TO:
+        return
     offsets = [(4, 4), (4, -9), (-4, 4), (-4, -9)]
     for i, (x, y, lab) in enumerate(zip(xs, ys, labels)):
         ax.annotate(str(lab), (x, y), textcoords="offset points",
@@ -169,7 +181,7 @@ def pca_scatter(scores, labels, variance, title, path, dpi, noise_label=None):
                 ax.scatter(x[m], y[m], s=70, c="lightgrey", marker="x", label="noise")
             else:
                 name = c if noise_label is not None else c + 1
-                ax.scatter(x[m], y[m], s=70, color=PALETTE[j % len(PALETTE)],
+                ax.scatter(x[m], y[m], s=70, color=_colour(j),
                            edgecolors="k", linewidths=0.4, label=f"Cluster {name}")
         ax.legend(fontsize=9)
     _annotate(ax, x, y, scores.index)
@@ -232,7 +244,7 @@ def stability(stab, summary, final_k, thresholds, path, dpi):
 def sample_fit(fit, path, dpi):
     q = fit.sort_values(["Cluster", "Silhouette"])
     fig, ax = plt.subplots(figsize=(9, max(5, 0.24 * len(q))))
-    colours = [PALETTE[(c - 1) % len(PALETTE)] for c in q["Cluster"]]
+    colours = [_colour(c - 1) for c in q["Cluster"]]
     ax.barh(range(len(q)), q["Silhouette"], color=colours)
     ax.set_yticks(range(len(q)), q["Sample_ID"], fontsize=7)
     ax.axvline(0, color="k", lw=0.8)
@@ -256,7 +268,7 @@ def cluster_vs_acquisition(fit, acquisition, path, dpi):
     if "Count" in df.columns:
         for c in clusters:
             sub = df[df["Cluster"] == c]
-            ax.scatter([c] * len(sub), sub["Count"], color=PALETTE[(c - 1) % len(PALETTE)],
+            ax.scatter([c] * len(sub), sub["Count"], color=_colour(c - 1),
                        s=55, edgecolors="k", linewidths=0.4)
         ax.set_yscale("log")
         ax.set_xticks(clusters)
@@ -271,7 +283,7 @@ def cluster_vs_acquisition(fit, acquisition, path, dpi):
         for c in clusters:
             sub = df[df["Cluster"] == c]
             ax.scatter([c] * len(sub), sub["Magnification_X"] / 1000,
-                       color=PALETTE[(c - 1) % len(PALETTE)], s=55,
+                       color=_colour(c - 1), s=55,
                        edgecolors="k", linewidths=0.4)
         ax.set_xticks(clusters)
         ax.set_xlabel("Cluster")

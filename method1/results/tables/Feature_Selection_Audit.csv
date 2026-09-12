@@ -10,8 +10,8 @@ Image_Area_um2,not used,37,1.0,expressed by density
 Count,not used,37,1.0,expressed by density
 Diameter_STD_um,not used,37,1.0,redundant with CV_percent
 Mean_Angle_deg,not used,37,1.0,depends on sample rotation on the stage
-Merged_Count,not used,37,1.0,less comparable across samples than Merged_percent
 Parasitic_Coverage_percent,not used,0,0.0,not measured for this image set
+Merged_Count,not used,37,1.0,less comparable across samples than Merged_percent
 Length_um,not used,0,0.0,not measured for this image set
 Taper_Ratio,not used,0,0.0,not measured for this image set
 QC_Notes,not used,0,0.0,free text

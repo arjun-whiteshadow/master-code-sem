@@ -8,8 +8,8 @@ import pandas as pd
 
 IMAGE_EXTENSIONS = {".tif", ".tiff", ".png", ".jpg", ".jpeg", ".bmp"}
 
-# Columns that may be present in the feature table but are not clustering
-# inputs. Listed here so the audit table can state why each was left out.
+# Reasons for leaving out columns that the ImageJ export produces but that
+# are not clustering inputs. Any other unused column is reported as such.
 NOT_USED = {
     "Image": "identifier",
     "Image_Area_um2": "expressed by density",
@@ -78,11 +78,13 @@ def select_features(cfg, df):
             rows.append(dict(Feature=col, Status="used", Valid_Values=valid,
                              Valid_Fraction=round(frac, 3), Reason=""))
 
-    for col, reason in NOT_USED.items():
-        if col in df.columns and col not in kept:
-            valid = int(df[col].notna().sum())
-            rows.append(dict(Feature=col, Status="not used", Valid_Values=valid,
-                             Valid_Fraction=round(valid / n, 3), Reason=reason))
+    for col in df.columns:
+        if col == "Sample_ID" or col in requested:
+            continue
+        valid = int(df[col].notna().sum())
+        rows.append(dict(Feature=col, Status="not used", Valid_Values=valid,
+                         Valid_Fraction=round(valid / n, 3),
+                         Reason=NOT_USED.get(col, "not in the configured descriptor list")))
     audit = pd.DataFrame(rows)
 
     if len(kept) < 2:

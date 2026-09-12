@@ -29,6 +29,7 @@ def main(config_path):
         d.mkdir(parents=True, exist_ok=True)
     dpi = int(cfg["output"]["figure_dpi"])
     thr = cfg["thresholds"]
+    plots.ANNOTATE_UP_TO = int(cfg["output"].get("annotate_up_to", 60))
 
     # Input
     raw = features.load_feature_table(cfg)
@@ -166,8 +167,8 @@ def main(config_path):
     merged.to_csv(tables / "Cluster_vs_Acquisition.csv", index=False)
     if merged["Magnification_X"].notna().any():
         sub = merged.dropna(subset=["Magnification_X"])
-        band = pd.cut(sub["Magnification_X"], [0, 5000, 15000, 40000, 1e9],
-                      labels=["<5kX", "5-15kX", "15-40kX", ">40kX"])
+        edges = [float(e) for e in cfg["magnification_band_edges"]]
+        band = pd.cut(sub["Magnification_X"], edges)
         nmi = normalized_mutual_info_score(band.astype(str), sub["Cluster"])
         print(f"NMI between magnification band and cluster: {nmi:.3f}")
 

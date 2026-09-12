@@ -50,6 +50,12 @@ thresholds:
   weak_cross_algorithm_ari: 0.30
   weak_subsample_ari: 0.50
 
+# Magnification bands (in X) for the cross-check against cluster membership.
+# Used only when an image folder is configured.
+magnification_band_edges: [0, 5000, 15000, 40000, 1.0e9]
+
 output:
   results_folder: results
   figure_dpi: 300
+  # Sample IDs are printed on scatter plots up to this many samples.
+  annotate_up_to: 60
