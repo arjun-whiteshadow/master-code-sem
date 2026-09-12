@@ -1,0 +1,5 @@
+Zoom_Factor,Mean_Zoom_Distance,SD_Zoom_Distance,Mean_Between_Sample_Distance,Ratio_Zoom_To_Between_Sample
+1.4,0.5177,0.1011,1.0808,0.479
+2.0,0.7982,0.0993,1.0808,0.739
+2.8,0.9534,0.0836,1.0808,0.882
+4.0,1.0653,0.0826,1.0808,0.986

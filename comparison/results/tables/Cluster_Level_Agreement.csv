@@ -1,0 +1,5 @@
+M1_Cluster,M1_Name,Best_CNN_Cluster,Shared,M1_Size,CNN_Size,Capture_Percent,Purity_Percent,Agreement_Level
+1,Highly nonuniform morphology,2,2,3,26,66.7,7.7,weak
+2,"Sparse, low-coverage morphology",2,14,16,26,87.5,53.8,moderate
+3,"Larger-diameter, relatively uniform morphology",2,8,15,26,53.3,30.8,weak
+4,"Dense, small-diameter morphology",2,2,3,26,66.7,7.7,weak

@@ -1,0 +1,5 @@
+Measure,Method_1,Method_2_primary
+Selected k,4.0,2.0
+Mean silhouette,0.3312,0.167
+k-means/Ward ARI,0.5714,0.1483
+Subsample ARI,0.7779,0.2314

@@ -1,0 +1,12 @@
+Sample_ID,M1_Cluster,CNN_Cluster,M1_Name,Expected_CNN,Agrees
+061623D09,1,1,Highly nonuniform morphology,2,False
+061623C13,3,1,"Larger-diameter, relatively uniform morphology",2,False
+061623C14,2,1,"Sparse, low-coverage morphology",2,False
+070823B05,3,1,"Larger-diameter, relatively uniform morphology",2,False
+070823B06,3,1,"Larger-diameter, relatively uniform morphology",2,False
+070823B07,3,1,"Larger-diameter, relatively uniform morphology",2,False
+070823C13,3,1,"Larger-diameter, relatively uniform morphology",2,False
+080823B02,3,1,"Larger-diameter, relatively uniform morphology",2,False
+080823B06,2,1,"Sparse, low-coverage morphology",2,False
+080823D12,3,1,"Larger-diameter, relatively uniform morphology",2,False
+080823D13,4,1,"Dense, small-diameter morphology",2,False

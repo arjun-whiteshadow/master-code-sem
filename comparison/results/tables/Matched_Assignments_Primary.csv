@@ -1,0 +1,38 @@
+Sample_ID,M1_Cluster,CNN_Cluster,M1_Name,Expected_CNN,Agrees
+020724C01,3,2,"Larger-diameter, relatively uniform morphology",2,True
+051623D1,3,2,"Larger-diameter, relatively uniform morphology",2,True
+061623D05,3,2,"Larger-diameter, relatively uniform morphology",2,True
+061623D09,1,1,Highly nonuniform morphology,2,False
+061623C10,3,2,"Larger-diameter, relatively uniform morphology",2,True
+061623C13,3,1,"Larger-diameter, relatively uniform morphology",2,False
+061623C14,2,1,"Sparse, low-coverage morphology",2,False
+070823B01,3,2,"Larger-diameter, relatively uniform morphology",2,True
+070823B03,3,2,"Larger-diameter, relatively uniform morphology",2,True
+070823B05,3,1,"Larger-diameter, relatively uniform morphology",2,False
+070823B06,3,1,"Larger-diameter, relatively uniform morphology",2,False
+070823B07,3,1,"Larger-diameter, relatively uniform morphology",2,False
+070823C08,3,2,"Larger-diameter, relatively uniform morphology",2,True
+070823C13,3,1,"Larger-diameter, relatively uniform morphology",2,False
+080823B02,3,1,"Larger-diameter, relatively uniform morphology",2,False
+080823B06,2,1,"Sparse, low-coverage morphology",2,False
+080823D08,2,2,"Sparse, low-coverage morphology",2,True
+080823D12,3,1,"Larger-diameter, relatively uniform morphology",2,False
+080823D13,4,1,"Dense, small-diameter morphology",2,False
+102723B06,2,2,"Sparse, low-coverage morphology",2,True
+102723D07,2,2,"Sparse, low-coverage morphology",2,True
+110323B1,2,2,"Sparse, low-coverage morphology",2,True
+111623BN11,1,2,Highly nonuniform morphology,2,True
+111623BN14,1,2,Highly nonuniform morphology,2,True
+111623CN02,4,2,"Dense, small-diameter morphology",2,True
+111623CN05,2,2,"Sparse, low-coverage morphology",2,True
+111623DN06,2,2,"Sparse, low-coverage morphology",2,True
+111623DN09,2,2,"Sparse, low-coverage morphology",2,True
+111623DN10,2,2,"Sparse, low-coverage morphology",2,True
+112823BN05,2,2,"Sparse, low-coverage morphology",2,True
+112823CN02,2,2,"Sparse, low-coverage morphology",2,True
+112823DN08,2,2,"Sparse, low-coverage morphology",2,True
+111423C1,2,2,"Sparse, low-coverage morphology",2,True
+111423C2,2,2,"Sparse, low-coverage morphology",2,True
+122923C09,2,2,"Sparse, low-coverage morphology",2,True
+120123C04,4,2,"Dense, small-diameter morphology",2,True
+121923BN07,3,2,"Larger-diameter, relatively uniform morphology",2,True

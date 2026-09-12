@@ -1,0 +1,5 @@
+CNN_Model,Matched,CNN_k,CNN_Silhouette,ARI,NMI,AMI,Homogeneity,Completeness,V_Measure
+convnext_tiny,37,5,0.3069,0.2011,0.3066,0.1916,0.3548,0.2699,0.3066
+mobilenet_v3_large,37,6,0.2501,0.0695,0.2095,0.055,0.2542,0.1782,0.2095
+resnet50,37,2,0.167,0.0645,0.0714,0.0162,0.0548,0.1024,0.0714
+efficientnet_b0,37,6,0.2474,0.0472,0.2178,0.0625,0.2513,0.1921,0.2178

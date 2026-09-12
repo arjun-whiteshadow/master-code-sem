@@ -1,0 +1,7 @@
+Model_A,Model_B,ARI
+resnet50,efficientnet_b0,0.3115
+resnet50,mobilenet_v3_large,0.2042
+resnet50,convnext_tiny,0.0709
+efficientnet_b0,mobilenet_v3_large,0.6465
+efficientnet_b0,convnext_tiny,0.1851
+mobilenet_v3_large,convnext_tiny,0.401
