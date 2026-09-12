@@ -1,6 +1,5 @@
 """Agreement between two partitions of the same samples."""
 
-import numpy as np
 import pandas as pd
 from scipy.optimize import linear_sum_assignment
 from sklearn.metrics import (adjusted_mutual_info_score, adjusted_rand_score,
