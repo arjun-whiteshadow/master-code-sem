@@ -41,6 +41,26 @@ The result tables the manuscript reports are committed under each folder's
 `results/tables/`, so the numbers can be checked without re-running. Tables
 that contain per-sample feature values or raw embeddings are excluded.
 
+## Running on a different dataset
+
+Nothing in the code is tied to the number of samples. To analyse a new image
+set, replace the two inputs and run the three scripts in order:
+
+- `method1/data/nanowire_features.xlsx`: one row per sample, a `Sample`
+  column and the six descriptor columns named in `method1/config.yaml`.
+- `method2/data/images/`: one image per sample, filename stem equal to the
+  `Sample` value.
+
+Every table and figure under `results/` is regenerated. Settings that were
+chosen for the 37-sample study and are worth revisiting for a larger set,
+all in the `config.yaml` files: the range of `k_values`, `min_cluster_size`,
+the DBSCAN `eps` grid, and the magnification band used by the zoom control.
+The descriptive cluster names in `comparison/config.yaml` describe the
+37-sample result and must be re-derived from the new cluster profiles.
+
+The tag `v1.0-manuscript` marks the commit whose result tables are the ones
+reported in the manuscript.
+
 ## Citation
 
 See `CITATION.cff`.
