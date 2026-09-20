@@ -28,6 +28,12 @@ parameters:
   # retained parameter drop that sample from the tests that use it.
   min_valid_fraction: 0.80
 
+# Two parameters whose Spearman |rho| across the runs reaches this value are
+# reported as not separable, and a parameter whose |rho| with growth date
+# reaches it is reported as drifting. The tests still run on all of them;
+# the flags are carried into the summary so the reader sees them.
+confound_threshold: 0.70
+
 output:
   results_folder: results
   figure_dpi: 300
