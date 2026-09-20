@@ -8,7 +8,7 @@ input:
   extensions: [.tif, .tiff, .png, .jpg, .jpeg, .bmp]
   # Method 1 descriptor table. Read only by the encoding regression, which
   # runs after clustering is complete. Leave empty to skip that test.
-  descriptor_file: ../method1/data/nanowire_features.xlsx
+  descriptor_file: ../method1/data/nanowire_features_37.xlsx
   descriptor_id_column: Sample
   descriptor_columns:
     - Density_NW_um2

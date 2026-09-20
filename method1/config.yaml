@@ -4,7 +4,7 @@
 random_seed: 42
 
 input:
-  feature_file: data/nanowire_features.xlsx
+  feature_file: data/nanowire_features_37.xlsx
   sample_id_column: Sample
   # Optional folder of SEM images, used only for contact sheets and the
   # magnification cross-check. Leave empty to skip both.

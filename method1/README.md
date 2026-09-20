@@ -16,9 +16,12 @@ pip install -r requirements.txt
 `requirements-lock.txt` lists the exact package versions that produced the
 committed tables; use it instead of `requirements.txt` to reproduce them.
 
-Place the feature table at `data/nanowire_features.xlsx` (one row per sample,
-a `Sample` column and the six descriptor columns). The table is available from
-the corresponding author on request.
+Place the feature table in `data/` (one row per sample, a `Sample` column and
+the six descriptor columns) and name it in `config.yaml` under
+`input.feature_file`. The file is named by its sample count,
+`nanowire_features_37.xlsx`, so that the committed config records which
+dataset produced the committed tables. The table is available from the
+corresponding author on request.
 
 ## Run
 
