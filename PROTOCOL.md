@@ -11,8 +11,10 @@ procedure.
 ## 1. Samples
 
 Thirty-seven GaAsSb nanowire samples grown by molecular beam epitaxy, one
-plan-view SEM image each. No sample is excluded from either method. Samples
-are matched between methods by the image filename stem (for example
+SEM image each, acquired at 30° stage tilt (29 images) or 35° (the seven
+images of the `070823` batch), as recorded in the TIFF metadata; one image
+(`051623D1`) carries no metadata. No sample is excluded from either method.
+Samples are matched between methods by the image filename stem (for example
 `061623C10`).
 
 ## 2. Inputs
