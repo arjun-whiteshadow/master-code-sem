@@ -10,6 +10,7 @@ identical clustering rules.
 | `method1/` | Six calibrated morphology descriptors per sample (ImageJ) | Standardise, PCA, k-means and Ward clustering over k = 2–6, stability tests |
 | `method2/` | One SEM image per sample | Frozen ImageNet-pretrained CNN embeddings (ResNet50, EfficientNet-B0, MobileNetV3-Large, ConvNeXt-Tiny), then the same clustering chain; plus two tests of what the embeddings encode |
 | `comparison/` | Outputs of the two methods | Agreement between methods and between architectures |
+| `growth/` | Method 1 clusters and the MBE growth log | Tests of whether the clusters correspond to growth conditions; regime map; placement of new samples |
 
 Every analytical setting is listed in `PROTOCOL.md` and mirrored in each
 folder's `config.yaml`. The scripts apply those settings and report the
@@ -24,18 +25,20 @@ and `run_*.py` entry point. Run them in order:
 cd method1    && python run_method1.py
 cd ../method2 && python run_method2.py
 cd ../comparison && python run_comparison.py
+cd ../growth && python run_growth.py
 ```
 
-Method 1 and the comparison run in seconds on a laptop. Method 2 needs PyTorch
-and downloads pretrained weights (about 250 MB) on first use; a CPU run takes a
-few minutes.
+Method 1, the comparison and the growth analysis run in seconds on a laptop.
+Method 2 needs PyTorch and downloads pretrained weights (about 250 MB) on
+first use; a CPU run takes a few minutes.
 
 ## Data availability
 
 The morphology feature table and the SEM images are not distributed with this
 repository. They are available from the corresponding author on reasonable
-request. Place them at `method1/data/nanowire_features.xlsx` and
-`method2/data/images/` respectively.
+request. Place them at `method1/data/nanowire_features_<n>.xlsx` and
+`method2/data/images/` respectively. The growth log read by `growth/` is
+likewise not distributed; its columns are defined in `growth/DATA_DICTIONARY.md`.
 
 The result tables the manuscript reports are committed under each folder's
 `results/tables/`, so the numbers can be checked without re-running. Tables

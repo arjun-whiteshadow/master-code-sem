@@ -169,5 +169,56 @@ the basis of embeddings alone.
 Every number in the manuscript is traceable to a CSV table under
 `results/tables/`. Clusters are described as candidate morphology groups;
 identification with growth regimes requires inspection of the images and
-correlation with growth conditions, which is outside the scope of these
-scripts.
+correlation with growth conditions. Section 9 describes that correlation;
+the manuscript's results do not depend on it.
+
+## 9. Growth conditions
+
+The `growth/` pipeline tests whether the Method 1 clusters correspond to the
+MBE conditions recorded for each sample. It reads the growth log (one row
+per sample; columns defined in `growth/DATA_DICTIONARY.md`) and the Method 1
+results, and does not alter either. The rules below were written before the
+growth log was available.
+
+**Parameters.** The numeric and categorical parameters tested are listed in
+`growth/config.yaml`. A parameter with fewer than 80% valid values, or with
+the same value in every run, is left out and the exclusion reported. A
+numeric column containing text stops the run. Samples absent from either
+the log or the Method 1 run are listed and excluded from every test.
+
+**Checks on the log.** Before any association test, Spearman correlation is
+computed between every pair of numeric parameters and between each parameter
+and the growth date (read from the `MMDDYY` prefix of the sample ID). A
+pair with |ρ| ≥ 0.70 is reported as not separable; a parameter with
+|ρ| ≥ 0.70 against date is reported as drifting. Both flags are carried
+into the summary and qualify any effect found for those parameters. The
+first and last growth date of each categorical level is tabulated for the
+same reason.
+
+**Tests.** Three families, each adjusted for multiple comparisons by the
+Benjamini–Hochberg procedure within the family, with q < 0.05 reported as
+significant:
+
+1. Spearman correlation of each descriptor with each numeric parameter.
+2. Kruskal–Wallis test of each numeric parameter across the clusters, and
+   for each categorical parameter an exact test of independence from the
+   cluster labels by 10,000 permutations (seed 42), the chi-square
+   statistic ranking the permuted tables.
+3. Ordinary least squares of each descriptor on all numeric parameters
+   together, with the in-sample R² and the leave-one-out R².
+
+**Regime map.** Each cluster's window on a parameter is the interquartile
+range of its members. The clusters are drawn on the two numeric parameters
+with the smallest Kruskal–Wallis p-value unless two are fixed in the
+config. A cluster is described as a candidate growth regime only where it
+differs from the others on at least one parameter after adjustment and the
+direction is physically sensible; that judgement is made from the images
+and the growth record and is not made by the code.
+
+**Placement of new samples.** A new sample's descriptors are standardised
+with the scaler, projected with the PCA loadings and assigned to the
+nearest cluster centre saved by the Method 1 run (`method1/results/model.json`);
+nothing is refitted. A sample further from its centre than any member of
+that cluster was is reported as outside the known clusters. The same
+nearest-centre rule is checked by leave-one-out on the analysed samples,
+with the cluster labels held fixed, and its accuracy reported.
