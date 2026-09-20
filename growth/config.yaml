@@ -1,0 +1,33 @@
+# Growth conditions against the Method 1 morphology clusters.
+# Settings are described in ../PROTOCOL.md.
+
+random_seed: 42
+
+input:
+  # One row per sample with the MBE growth parameters. Column names are
+  # listed under `parameters` below; see DATA_DICTIONARY.md.
+  growth_log: ../method1/data/growth_conditions.xlsx
+  sample_id_column: Sample
+  # Method 1 must have been run: the descriptor table, cluster assignments
+  # and fitted model are read from here.
+  method1_results: ../method1/results
+
+parameters:
+  # Enter the correlation, regression and per-cluster tests.
+  numeric:
+    - Substrate_Temperature_C
+    - Ga_BEP_Torr
+    - As_BEP_Torr
+    - Sb_BEP_Torr
+    - Growth_Time_min
+  # Enter the per-cluster test only.
+  categorical:
+    - Substrate
+  # A parameter with fewer valid values than this fraction of the merged
+  # samples is left out and the exclusion reported. Missing values in a
+  # retained parameter drop that sample from the tests that use it.
+  min_valid_fraction: 0.80
+
+output:
+  results_folder: results
+  figure_dpi: 300
