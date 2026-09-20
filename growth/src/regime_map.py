@@ -16,6 +16,11 @@ def choose_axes(cluster_tests, fixed=None):
     return ranked["Parameter"].head(2).tolist()
 
 
+def _round(x):
+    """Four significant figures; the parameters span orders of magnitude."""
+    return float(f"{x:.4g}")
+
+
 def regime_windows(merged, numeric):
     """Quartiles of each numeric parameter within each cluster.
 
@@ -29,7 +34,7 @@ def regime_windows(merged, numeric):
             v = g[p].dropna()
             row = dict(Cluster=int(c), Parameter=p, N=len(v))
             for name, val in zip(names, v.quantile([0, 0.25, 0.5, 0.75, 1])):
-                row[name] = round(float(val), 4)
+                row[name] = _round(val)
             rows.append(row)
     return pd.DataFrame(rows, columns=["Cluster", "Parameter", "N"] + names)
 

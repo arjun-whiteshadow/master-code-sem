@@ -18,5 +18,7 @@ method2/data/
 method1/results/tables/Features_Used_Raw_Units.csv
 method1/results/tables/Features_Standardized.csv
 method2/results/tables/Embeddings_*.csv
+growth/results/tables/Merged_Features_Conditions.csv
+growth/results/tables/Regime_Map_Points.csv
 
 .DS_Store

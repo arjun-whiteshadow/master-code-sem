@@ -31,6 +31,11 @@ def benjamini_hochberg(p):
     return q
 
 
+def _round(x):
+    """Four significant figures; the parameters span orders of magnitude."""
+    return float(f"{x:.4g}")
+
+
 def _finish(df, alpha):
     df["q_value"] = benjamini_hochberg(df["p_value"])
     df["Significant"] = df["q_value"] < alpha
@@ -67,7 +72,7 @@ def cluster_vs_numeric(merged, numeric, alpha):
         stat, pval = kruskal(*present) if len(present) >= 2 else (np.nan, np.nan)
         row = dict(Parameter=p, N=len(sub), H=round(float(stat), 4), p_value=float(pval))
         for c, g in zip(clusters, groups):
-            row[f"Median_Cluster_{c}"] = round(float(np.median(g)), 4) if len(g) else np.nan
+            row[f"Median_Cluster_{c}"] = _round(np.median(g)) if len(g) else np.nan
             row[f"N_Cluster_{c}"] = len(g)
         rows.append(row)
     return _finish(pd.DataFrame(rows), alpha)
