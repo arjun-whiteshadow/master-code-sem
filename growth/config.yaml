@@ -34,6 +34,15 @@ parameters:
 # the flags are carried into the summary so the reader sees them.
 confound_threshold: 0.70
 
+tests:
+  # Benjamini-Hochberg adjusted p (q) below this is reported as significant.
+  # Adjustment is within each family: the descriptor-parameter grid, the
+  # per-cluster numeric tests, and the per-cluster categorical tests.
+  alpha: 0.05
+  # Label shuffles for the exact test of a categorical parameter against
+  # the clusters.
+  n_permutations: 10000
+
 output:
   results_folder: results
   figure_dpi: 300
