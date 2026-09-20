@@ -43,6 +43,12 @@ tests:
   # the clusters.
   n_permutations: 10000
 
+regime_map:
+  # The two parameters the clusters are drawn against. Leave empty to take
+  # the two with the smallest per-cluster Kruskal-Wallis p-value; name two
+  # parameters to fix the axes in advance.
+  axes: []
+
 output:
   results_folder: results
   figure_dpi: 300
