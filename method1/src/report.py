@@ -30,6 +30,11 @@ def write_run_info(cfg, summary, path):
     path.write_text(json.dumps(payload, indent=2, default=str))
 
 
+def write_model(model, path):
+    """JSON record of the fitted transformation, from ``clustering.fitted_model``."""
+    path.write_text(json.dumps(model, indent=2))
+
+
 def _wrap(text, indent="  "):
     return textwrap.fill(text, width=72, initial_indent=indent, subsequent_indent=indent)
 

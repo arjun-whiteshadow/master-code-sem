@@ -100,6 +100,8 @@ def main(config_path):
     }).merge(fit.drop(columns="Cluster"), on="Sample_ID")
     assignments = assignments.merge(acquisition, on="Sample_ID", how="left")
     assignments.to_csv(tables / "Final_Cluster_Assignments.csv", index=False)
+    report.write_model(clustering.fitted_model(X, Z, loadings, S, labels),
+                       res / "model.json")
 
     prof_raw, prof_std = clustering.cluster_profiles(X, Z, labels)
     prof_raw.to_csv(tables / "Cluster_Profiles_Original_Units.csv", index=False)

@@ -119,6 +119,27 @@ def test_per_sample_fit_marks_negative_silhouette(blobs):
     assert fit["Negative_Silhouette"].sum() == 1
 
 
+def test_fitted_model_reproduces_scores_and_labels(blobs):
+    Z = clustering.standardize(blobs)
+    scores, _, loadings = clustering.run_pca(Z, 0.8, 2, SEED)
+    S = scores.to_numpy()
+    _, km, _ = clustering.cluster_over_k(S, [3], 10, SEED)
+    labels = km[3]
+    m = clustering.fitted_model(blobs, Z, loadings, S, labels)
+
+    X = blobs[m["features"]].to_numpy()
+    Z2 = (X - np.array(m["scaler_mean"])) / np.array(m["scaler_scale"])
+    S2 = (Z2 - np.array(m["pca_mean"])) @ np.array(m["pca_loadings"])
+    assert np.allclose(S2, S)
+
+    centres = np.array(m["cluster_centres"])
+    d = np.linalg.norm(S2[:, None, :] - centres[None, :, :], axis=2)
+    assert (d.argmin(axis=1) == labels).all()
+    assert len(m["max_member_distance"]) == m["k"] == 3
+    assert all(d[labels == c, c].max() <= m["max_member_distance"][c] + 1e-12
+               for c in range(3))
+
+
 def test_leave_one_feature_out_returns_one_row_per_feature(blobs):
     Z = clustering.standardize(blobs)
     cfg = {"random_seed": SEED, "pca": {"variance_threshold": 0.8, "min_components": 2},

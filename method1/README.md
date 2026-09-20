@@ -82,6 +82,7 @@ Written to `results/`:
 | `tables/DBSCAN_*.csv` | Parameter grid and the displayed solution |
 | `figures/` | PNG figures at 300 dpi |
 | `reports/Method1_Summary.txt` | Plain-text summary of the run |
+| `model.json` | Scaler, PCA loadings and cluster centres of the selected solution, for placing new samples |
 | `run_info.json` | Settings, headline numbers and library versions |
 
 The committed tables are those produced by the run reported in the

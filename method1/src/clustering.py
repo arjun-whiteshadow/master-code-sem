@@ -249,5 +249,31 @@ def per_sample_fit(S, labels, sample_ids):
     })
 
 
+def fitted_model(X, Z, loadings, S, labels):
+    """The mapping from raw descriptors to cluster, as plain lists, so that a
+    new sample can be placed against this run's clusters without refitting.
+
+    Standardisation is the column mean and population SD of ``X`` (what
+    StandardScaler uses), projection is the retained PCA loadings about the
+    mean of ``Z``, and each cluster centre is the mean of its members'
+    scores. The largest member distance from each centre is recorded as a
+    reference for judging whether a new sample falls within the cluster.
+    """
+    k = int(labels.max()) + 1
+    centres = np.vstack([S[labels == c].mean(axis=0) for c in range(k)])
+    dist = np.linalg.norm(S - centres[labels], axis=1)
+    return {
+        "features": list(X.columns),
+        "scaler_mean": X.mean().tolist(),
+        "scaler_scale": X.std(ddof=0).tolist(),
+        "pca_mean": Z.mean().tolist(),
+        "pca_components": list(loadings.columns),
+        "pca_loadings": loadings.to_numpy().tolist(),
+        "k": k,
+        "cluster_centres": centres.tolist(),
+        "max_member_distance": [float(dist[labels == c].max()) for c in range(k)],
+    }
+
+
 def ward_linkage(S):
     return linkage(S, method="ward", metric="euclidean")
